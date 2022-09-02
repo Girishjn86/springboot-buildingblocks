@@ -1,4 +1,4 @@
-package com.stacksimplify.restservices;
+package com.stacksimplify.restservices.entities;
 
 public class UserDetails {
 	private String firstName;

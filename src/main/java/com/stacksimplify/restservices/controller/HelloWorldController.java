@@ -1,7 +1,9 @@
-package com.stacksimplify.restservices;
+package com.stacksimplify.restservices.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.stacksimplify.restservices.entities.UserDetails;
 
 @RestController
 public class HelloWorldController {
