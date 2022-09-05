@@ -5,15 +5,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
+/*import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+*/
 @Entity
 @Table(name="users")
 public class User {
 	@Id
 	@GeneratedValue
 	private Long id;
+	@NotEmpty(message ="should Not be empty")
 	@Column(name="USER_NAME", length=50,nullable=false,unique = true)	
 	private String username;
+	@Size(min=2, message="minimum 2 characters")
 	@Column(name="FIRST_NAME", length=50,nullable=false)
 	private String firstName;
 	@Column(name="LAST_NAME", length=50,nullable=false)
