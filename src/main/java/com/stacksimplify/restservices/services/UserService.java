@@ -41,7 +41,7 @@ public class UserService {
 
 	public User updateUserById(Long id, User user) throws UserNotFoundException {
 		if(userRepository.findById(id).isPresent()) { 
-			user.setId(id);
+			user.setUserId(id);
 			return userRepository.save(user);
 		}else {
 			throw new UserNotFoundException("User Not exist");

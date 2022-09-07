@@ -1,7 +1,6 @@
 package com.stacksimplify.restservices.entities;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,16 +11,17 @@ import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.hateoas.RepresentationModel;
 
 /*import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 */
 @Entity
 @Table(name="users")
-public class User {
+public class User extends RepresentationModel{
 	@Id
 	@GeneratedValue
-	private Long id;
+	private Long userId;
 	@NotEmpty(message ="should Not be empty")
 	@Column(name="USER_NAME", length=50,nullable=false,unique = true)	
 	private String username;
@@ -40,8 +40,8 @@ public class User {
 	private List<Order> orders;
 	public User() {
 	}
-	public User(Long id, String username, String firstName, String lastName, String email, String role, String ssn) {
-		this.id = id;
+	public User(Long userId, String username, String firstName, String lastName, String email, String role, String ssn) {
+		this.userId = userId;
 		this.username = username;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -49,11 +49,11 @@ public class User {
 		this.role = role;
 		this.ssn = ssn;
 	}
-	public Long getId() {
-		return id;
+	public Long getUserId() {
+		return userId;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 	public String getUsername() {
 		return username;
@@ -99,7 +99,7 @@ public class User {
 	}
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", firstName=" + firstName + ", lastName=" + lastName
+		return "User [userId=" + userId + ", username=" + username + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", email=" + email + ", role=" + role + ", ssn=" + ssn + "]";
 	}
 }
