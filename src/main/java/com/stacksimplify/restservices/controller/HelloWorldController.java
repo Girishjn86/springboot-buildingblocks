@@ -9,7 +9,8 @@ import com.stacksimplify.restservices.entities.UserDetails;
 public class HelloWorldController {
 	@GetMapping("/helloworld")
 	public String helloWorld() {
-		return "Hello World in branch";
+		System.out.println("code of branch");
+		return "Hello World";
 	}
 	@GetMapping("helloworldbean")
 	public UserDetails helloWorldBean() {
