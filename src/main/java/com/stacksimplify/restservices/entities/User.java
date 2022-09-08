@@ -1,7 +1,6 @@
 package com.stacksimplify.restservices.entities;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,11 +12,15 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /*import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 */
 @Entity
 @Table(name="users")
+@JsonIgnoreProperties({"firstName","lastName"})
 public class User {
 	@Id
 	@GeneratedValue
@@ -35,6 +38,7 @@ public class User {
 	@Column(name="Role", length=50,nullable=false)
 	private String role;
 	@Column(name="SSN", length=50,nullable=false,unique=true)
+	@JsonIgnore
 	private String ssn;
 	@OneToMany(mappedBy="user")
 	private List<Order> orders;
