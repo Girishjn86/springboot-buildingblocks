@@ -12,6 +12,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -20,7 +21,8 @@ import javax.validation.constraints.Size;
 */
 @Entity
 @Table(name="users")
-@JsonIgnoreProperties({"firstName","lastName"})
+//@JsonIgnoreProperties({"firstName","lastName"})
+@JsonFilter("userFilter")
 public class User {
 	@Id
 	@GeneratedValue
@@ -38,7 +40,7 @@ public class User {
 	@Column(name="Role", length=50,nullable=false)
 	private String role;
 	@Column(name="SSN", length=50,nullable=false,unique=true)
-	@JsonIgnore
+	//@JsonIgnore
 	private String ssn;
 	@OneToMany(mappedBy="user")
 	private List<Order> orders;
