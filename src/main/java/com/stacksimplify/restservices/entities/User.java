@@ -12,9 +12,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.fasterxml.jackson.annotation.JsonFilter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonView;
 
 /*import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -22,27 +20,35 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name="users")
 //@JsonIgnoreProperties({"firstName","lastName"})
-@JsonFilter("userFilter")
+//@JsonFilter("userFilter")
 public class User {
 	@Id
 	@GeneratedValue
+	@JsonView(Views.External.class)
 	private Long id;
 	@NotEmpty(message ="should Not be empty")
-	@Column(name="USER_NAME", length=50,nullable=false,unique = true)	
+	@Column(name="USER_NAME", length=50,nullable=false,unique = true)
+	@JsonView(Views.External.class)
 	private String username;
 	@Size(min=2, message="minimum 2 characters")
 	@Column(name="FIRST_NAME", length=50,nullable=false)
+	@JsonView(Views.External.class)
 	private String firstName;
 	@Column(name="LAST_NAME", length=50,nullable=false)
+	@JsonView(Views.External.class)
 	private String lastName;
 	@Column(name="EMAIL_ADDRESS", length=50,nullable=false)
+	@JsonView(Views.External.class)
 	private String email;
 	@Column(name="Role", length=50,nullable=false)
+	@JsonView(Views.Internal.class)
 	private String role;
 	@Column(name="SSN", length=50,nullable=false,unique=true)
 	//@JsonIgnore
+	@JsonView(Views.Internal.class)
 	private String ssn;
 	@OneToMany(mappedBy="user")
+	@JsonView(Views.Internal.class)
 	private List<Order> orders;
 	public User() {
 	}
