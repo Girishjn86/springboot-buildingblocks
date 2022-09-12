@@ -73,15 +73,17 @@ public class User {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getFirstName() {
-		return firstName;
-	}
+
+	/*
+	 * public String getFirstName() { return firstName; }
+	 */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	public String getLastName() {
-		return lastName;
-	}
+
+	/*
+	 * public String getLastName() { return lastName; }
+	 */
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
