@@ -50,9 +50,14 @@ public class User {
 	@OneToMany(mappedBy="user")
 	@JsonView(Views.Internal.class)
 	private List<Order> orders;
+	private String address;
 	public User() {
 	}
-	public User(Long id, String username, String firstName, String lastName, String email, String role, String ssn) {
+	
+	public User(Long id, @NotEmpty(message = "should Not be empty") String username,
+			@Size(min = 2, message = "minimum 2 characters") String firstName, String lastName, String email,
+			String role, String ssn, List<Order> orders, String address) {
+		super();
 		this.id = id;
 		this.username = username;
 		this.firstName = firstName;
@@ -60,7 +65,10 @@ public class User {
 		this.email = email;
 		this.role = role;
 		this.ssn = ssn;
+		this.orders = orders;
+		this.address = address;
 	}
+
 	public Long getId() {
 		return id;
 	}
@@ -74,16 +82,16 @@ public class User {
 		this.username = username;
 	}
 
-	/*
-	 * public String getFirstName() { return firstName; }
-	 */
+	
+	 public String getFirstName() { return firstName; }
+	
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
-	/*
-	 * public String getLastName() { return lastName; }
-	 */
+	
+	  public String getLastName() { return lastName; }
+	 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
@@ -111,9 +119,18 @@ public class User {
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
 	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", email=" + email + ", role=" + role + ", ssn=" + ssn + "]";
+				+ ", email=" + email + ", role=" + role + ", ssn=" + ssn + ", orders=" + orders + ", address=" + address
+				+ "]";
+	}
+
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 }
